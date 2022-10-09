@@ -93,3 +93,5 @@ Currently, the emulator passes the following tests:
     1. rv32ui
     2. rv64ui
     3. rv64um
+    
+![](https://i.imgur.com/G3Qrvy1.png)
