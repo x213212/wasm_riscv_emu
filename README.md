@@ -95,3 +95,13 @@ Currently, the emulator passes the following tests:
     3. rv64um
     
 ![](https://i.imgur.com/G3Qrvy1.png)
+
+build
+
+```bash
+//link
+emcc -c test.cpp -o test
+
+emcc  main.c ./test  ./src/bus.c ./src/cpu.c ./src/csr.c ./src/dram.c -o main -I ./include -s WASM=1  -o hello2.html  --preload-file ./addi.bin  -lidbfs.js -s "EXTRA_EXPORTED_RUNTIME_METHODS=['UTF8ToString', 'getValue','stringToUTF8','lengthBytesUTF8']" 
+
+```
