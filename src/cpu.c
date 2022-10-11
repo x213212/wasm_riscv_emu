@@ -538,10 +538,12 @@ int cpu_execute(CPU *cpu, uint32_t inst) {
     int funct7 = (inst >> 25) & 0x7f;   // funct7 in bits 31..25
 
     cpu->regs[0] = 0;                   // x0 hardwired to 0 at each cycle
-
-    /*printf("%s\n%#.8lx -> Inst: %#.8x <OpCode: %#.2x, funct3:%#x, funct7:%#x> %s",*/
-            /*ANSI_YELLOW, cpu->pc-4, inst, opcode, funct3, funct7, ANSI_RESET); // DEBUG*/
-    // printf("%s\n%#.8lx -> %s", ANSI_YELLOW, cpu->pc-4, ANSI_RESET); // DEBUG
+    printf("\n%#.8lx -> Inst: %llx ",
+            cpu->pc-4, inst); // DEBUG*/
+    printf("\n<OpCode: %#.2x, funct3:%#x, funct7:%#x> ", opcode, funct3, funct7); // DEBUG*/
+    // printf("\n%#.8lx -> Inst: %lu <OpCode: %#.2x, funct3:%#x, funct7:%#x> ",
+    //         cpu->pc-4, inst, opcode, funct3, funct7); // DEBUG*/
+//    printf("%s\n%#.8lx -> %s", ANSI_YELLOW, cpu->pc-4, ANSI_RESET); // DEBUG
 
     switch (opcode) {
         case LUI:   exec_LUI(cpu, inst); break;
@@ -734,10 +736,10 @@ void dump_registers(CPU *cpu) {
     /*}*/
 
     for (int i=0; i<8; i++) {
-        printf("   %4s: %#-13.2lx  ", abi[i],    cpu->regs[i]);
-        printf("   %2s: %#-13.2lx  ", abi[i+8],  cpu->regs[i+8]);
-        printf("   %2s: %#-13.2lx  ", abi[i+16], cpu->regs[i+16]);
-        printf("   %3s: %#-13.2lx\n", abi[i+24], cpu->regs[i+24]);
+        printf("   %4s:%llx ", abi[i],    cpu->regs[i]);
+        printf("   %2s:%llx  ", abi[i+8],  cpu->regs[i+8]);
+        printf("   %2s:%llx  ", abi[i+16], cpu->regs[i+16]);
+        printf("   %3s:%llx\n", abi[i+24], cpu->regs[i+24]);
     }
 }
 
